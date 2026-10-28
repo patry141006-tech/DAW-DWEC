@@ -1,0 +1,38 @@
+body {
+    background-color: #102820;
+    font-family: sans-serif;
+    color: white;
+}
+
+#reloj {
+    font-size: 30px;
+    text-align: center;
+}
+
+.reloj-contenedor {
+    background-color: #b71c1c;
+    padding: 30px;
+    max-width: 600px;
+    margin: 10% auto;
+    border-radius: 15px;
+}
+
+h2 {
+    color: gold;
+    font-size: 28px;
+}
+
+#fecha {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#cuentaAtras {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+}
+
+.animar {
+    border: 2px solid gold;
+}
