@@ -130,3 +130,23 @@ footer {
         margin: 10px auto;
     }
 }
+
+/*MI PRACTICA CSS ORIGINAL NO FAKE*/
+/* Resalta un elemento */
+.destacado {
+    background-color: #fce4ec;
+    border: 2px solid #c2185b;
+    box-shadow: 0 0 8px #d8a0b5;
+    padding: 10px;
+}
+
+/* Oculta un elemento */
+.oculto {
+    display: none;
+}
+
+/* Cambia los colores de toda la página */
+.tema-alternativo {
+    background-color: #263238;
+    color: #f5f5f5;
+}
