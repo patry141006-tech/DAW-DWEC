@@ -281,7 +281,7 @@ function crearInsertar() {
     enlace.href = '#personajes';
 
     const elementoMenu = document.createElement('li');
-    elementoMenu.append(enlaceNuevo);
+    elementoMenu.append(enlace);
     menu.append(elementoMenu);
     //2. Crea dos enlaces más e insértalos a la vez al principio
     const enlaceUno = document.createElement('li');
@@ -324,10 +324,59 @@ function crearInsertar() {
 }
 
 function usarWindow() {
+    //1. Barra de información → Asigna un nombre a la ventana y crea con JS un <footer> (o un
+    //<div> al final del <body>) que muestre:
+    //✓ El nombre de la ventana
+    window.name = "Daniela Bridgerton"
+    //console.log(window.name);
+
+    const footerWindow = document.createElement('footer')
+    document.body.append(footerWindow);
+    //✓ El tamaño del área visible
+    //✓ El tamaño exterior de la ventana
+    //outer incluye el marco del navegador
+    //✓ La posición de la ventana en la pantalla
+    footerWindow.textContent = `Nombre de la ventana: ${window.name}
+    Tamaño del area visible: ${window.innerWidth} y ${window.innerHeight}
+    Tamaño exterior de la ventana: ${window.outerWidth} y ${window.outerHeight}
+    Posicion de la ventana: ${window.screenX} y ${window.screenY}`;
+
+    //2. Aviso temporal → al cargar la página aparece un aviso de bienvenida creado por JS. A los 4
+    //segundos, setTimeout le añade la clase .oculto y, medio segundo después, el aviso se
+    //elimina del DOM
+
+    const bienvenida = document.createElement('div')
+    bienvenida.textContent = "BIENVENIDA A LA WEB DE LOS BRIDGERTON DE DANIELA"
+    document.body.prepend(bienvenida);
+    setTimeout(() => {
+        bienvenida.classList.add('oculto');
+        setTimeout(() => {
+            bienvenida.remove();
+        }, 500)
+    }, 4000);
+    //3. Cancelar un temporizador → Programa un segundo setTimeout que cambiará el título
+    //principal a los 8 segundos, guarda el identificador que devuelve y cancélalo con
+    //clearTimeout. Muestra el identificador por consola y comprueba que el título no cambia.
+    const titulo = document.querySelector('h1');
+
+    const temporizador = setTimeout(() => {
+        titulo.textContent = 'ESTO NO SE VE';
+    }, 8000);
+
+    console.log('Temporizador:', temporizador);
+    clearTimeout(temporizador);
+    //4. Window como objeto global → Muestra por consola window.document === document y
+    //typeof window.seleccionar, y explica en un comentario por qué podemos escribir
+    //document sin poner window. delante.
+    console.log(window.document === document);
+    console.log(typeof window.seleccionar);
+    //Window es un objeto global, es como object en java, entonces todo deriva de window
+    //y por eso no hace falta ponerlo
 
 }
 //seleccionar()
 //contenidoYAtributos()
 //estilosYClases()
 //recorrerDOM()
-crearInsertar()
+//crearInsertar()
+usarWindow()
