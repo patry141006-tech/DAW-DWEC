@@ -3,7 +3,7 @@ function carrito() {
     const carrito = []
     for (let enl of enlaces) {
         enl.addEventListener('click', () => {
-            carrito.push(extraerDatos(enl))
+            actualizarCantidad(carrito, enl)
             pintarCarrito(carrito)
         });
     }
@@ -40,6 +40,20 @@ function pintarCarrito(carrito) {
         puntoDePartida.appendChild(tr)
 
     });
+}
+
+function actualizarCantidad(carrito, curso) {
+    let extraido = extraerDatos(curso)
+    let i = 0;
+    do {
+        if (carrito[i] != undefined && carrito[i].id === extraido.id) {
+            carrito[i].cantidad++
+        } else {
+            carrito.push(extraido)
+        }
+        i++
+    } while (i < carrito.length)
+
 }
 
 function extraerDatos(enl) {
