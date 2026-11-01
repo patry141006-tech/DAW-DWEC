@@ -7,6 +7,12 @@ function carrito() {
             pintarCarrito(carrito)
         });
     }
+    const vaciar = document.querySelector('#vaciar-carrito')
+    vaciar.addEventListener('click', () => {
+        carrito.length = 0
+        pintarCarrito(carrito)
+
+    });
 }
 function pintarCarrito(carrito) {
     const puntoDePartida = document.querySelector('#lista-carrito tbody')
@@ -27,6 +33,8 @@ function pintarCarrito(carrito) {
         enlace.setAttribute("data-id", element.id)
         enlace.addEventListener('click', () => {
             quitarUnidad(carrito, element)
+            pintarCarrito(carrito)
+
         });
 
         td1.appendChild(imagen)
@@ -48,9 +56,9 @@ function pintarCarrito(carrito) {
 function actualizarCantidad(carrito, curso) {
     let extraido = extraerDatos(curso)
     let indice = -1
-    for(let i=0; i<carrito.length; i++){
-        if(carrito[i].id===extraido.id){
-            indice= i
+    for (let i = 0; i < carrito.length; i++) {
+        if (carrito[i] !== undefined && carrito[i].id === extraido.id) {
+            indice = i
             break
         }
     }
@@ -82,16 +90,23 @@ function extraerDatos(enl) {
 }
 
 function quitarUnidad(carrito, curso) {
+    let indice = -1
     for (let i = 0; i < carrito.length; i++) {
-        if (carrito[i] != undefined && carrito[i].id === curso.id) {
-            if (carrito[i].cantidad > 1) {
-                carrito[i].cantidad--
-            } else {
-                delete carrito[i]
-            }
+        if (carrito[i] !== undefined && carrito[i].id === curso.id) {
+            indice = i
+            break
         }
     }
 
+    if (indice > -1) {
+        if (curso.cantidad > 1) {
+            carrito[indice].cantidad--
+        } else {
+            carrito.splice(indice, 1)
+        }
+    }
 }
+
+
 
 carrito()
