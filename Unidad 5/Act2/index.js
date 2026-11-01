@@ -25,6 +25,9 @@ function pintarCarrito(carrito) {
         enlace.textContent = "X"
         enlace.setAttribute("class", "borrar-curso")
         enlace.setAttribute("data-id", element.id)
+        enlace.addEventListener('click', () => {
+            quitarUnidad(carrito, element)
+        });
 
         td1.appendChild(imagen)
         td2.textContent = element.titulo
@@ -44,16 +47,19 @@ function pintarCarrito(carrito) {
 
 function actualizarCantidad(carrito, curso) {
     let extraido = extraerDatos(curso)
-    let i = 0;
-    do {
-        if (carrito[i] != undefined && carrito[i].id === extraido.id) {
-            carrito[i].cantidad++
-        } else {
-            carrito.push(extraido)
+    let indice = -1
+    for(let i=0; i<carrito.length; i++){
+        if(carrito[i].id===extraido.id){
+            indice= i
+            break
         }
-        i++
-    } while (i < carrito.length)
+    }
 
+    if (indice > -1) {
+        carrito[indice].cantidad++
+    } else {
+        carrito.push(extraido)
+    }
 }
 
 function extraerDatos(enl) {
@@ -75,5 +81,17 @@ function extraerDatos(enl) {
     return curso
 }
 
+function quitarUnidad(carrito, curso) {
+    for (let i = 0; i < carrito.length; i++) {
+        if (carrito[i] != undefined && carrito[i].id === curso.id) {
+            if (carrito[i].cantidad > 1) {
+                carrito[i].cantidad--
+            } else {
+                delete carrito[i]
+            }
+        }
+    }
+
+}
 
 carrito()
